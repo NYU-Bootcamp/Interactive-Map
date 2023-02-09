@@ -16,11 +16,17 @@ let user = {
         return pin
     },
 
+    selection: '',
+
     getSelection: function(){
         const selectors = document.getElementsByClassName('place')
         for(let i=0; i < selectors.length; i++){
             selectors[i].addEventListener("click", () =>{
-                console.log(selectors[i].value)
+                if(map.pins){
+                    map.removePins()
+                }
+                this.selection = selectors[i].value
+                map.places(selectors[i].value)
             })
         }
     } 
