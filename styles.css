@@ -1,5 +1,6 @@
 body {
     margin: 0px;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 #menu {
@@ -21,5 +22,6 @@ input[type="radio"] {
 
 #map {
     background-color: rgb(141, 141, 173);
-    height: calc(100vh - 60px) ;
+    height: calc(100vh - 60px);
+
 }
