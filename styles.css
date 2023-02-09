@@ -1,0 +1,25 @@
+body {
+    margin: 0px;
+}
+
+#menu {
+    width: 40%;
+    background-color: rgb(67, 67, 122);
+    border-radius: 25px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+}
+
+input[type="radio"] {
+    accent-color: rgb(201, 77, 23);
+}
+
+#map {
+    background-color: rgb(141, 141, 173);
+    height: calc(100vh - 60px) ;
+}
