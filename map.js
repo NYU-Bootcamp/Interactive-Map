@@ -23,7 +23,7 @@ let map = {
 
         // Create and add a geolocation marker:
         const marker = L.marker(coordinates, {icon: user.pin()})
-        marker.addTo(this.myMap).bindPopup('<h3><b>You\'re Here</b></h3>').openPopup()
+        marker.addTo(this.myMap).bindPopup('<h3><b>You are Here</b></h3>').openPopup()
 
         const baseMaps = {
             "Street Map": osm,
@@ -32,6 +32,7 @@ let map = {
         };
 
         const layerControl = L.control.layers(baseMaps).addTo(this.myMap);
+        user.addMap()
     },
 
     setCoords: function(coords){

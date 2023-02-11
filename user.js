@@ -1,4 +1,9 @@
 let user = {
+    maps: [],
+    addMap: function(){
+        this.maps.push(map.myMap)
+        selectorAddMaps()
+    },
     getCoords: async function(){
         let pos = await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(resolve, reject)
