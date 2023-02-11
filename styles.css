@@ -4,11 +4,7 @@ body {
     background-color: rgb(213, 213, 224);
 }
 
-h3 {
-    margin-bottom: 0px;
-    color: rgb(67, 67, 122);
-}
-
+/* The main menu at the top of the page */
 #menu {
     width: 60%;
     background-color: rgb(67, 67, 122);
@@ -22,6 +18,7 @@ h3 {
     justify-content: space-around;
 }
 
+/* The inputs */
 input[type="radio"] {
     accent-color: rgb(201, 77, 23);
 }
@@ -48,4 +45,10 @@ input[type="radio"] {
 
 #addMap:hover {
     background-color: #fff;
+}
+
+/* The business name in popups */
+h3 {
+    margin-bottom: 0px;
+    color: rgb(67, 67, 122);
 }
