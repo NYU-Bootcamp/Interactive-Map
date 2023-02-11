@@ -1,8 +1,10 @@
 let map = {
+    // Variable which holds the current map that's being viewed
     myMap: '',
-    createMap: function(coordinates){
+    // Function which actually renders the map
+    createMap: function(){
         this.myMap = L.map('map', {
-        center: [coordinates[0], coordinates[1]],
+        center: [this.coordinates[0], this.coordinates[1]],
         zoom: 15,
         })
     
@@ -22,7 +24,7 @@ let map = {
         }).addTo(this.myMap)
 
         // Create and add a geolocation marker:
-        const marker = L.marker(coordinates, {icon: user.pin()})
+        const marker = L.marker(this.coordinates, {icon: user.pin()})
         marker.addTo(this.myMap).bindPopup('<h3><b>You are Here</b></h3>').openPopup()
 
         const baseMaps = {
@@ -32,22 +34,23 @@ let map = {
         };
 
         const layerControl = L.control.layers(baseMaps).addTo(this.myMap);
-        user.addMap()
     },
-
+    // Function which sets the coordinates of the current map
     setCoords: function(coords){
+        this.coordinates = [coords[0], coords[1]]
         this.myMap.center = [coords[0], coords[1]]
     },
-
+    // Variable which stores the coordinates of the current map
+    coordinates: [],
     locationPin: L.icon({
         iconUrl: './assets/orange-pin.png',
         iconSize: [38, 38],
         iconAnchor: [19, 38],
         popupAnchor: [0, -38],
     }),
-
+    // Variable which saves the current pins
     pins: '',
-
+    // Function which gets the pin locations from Foursquarebased on user selection and current coordinates
     places: async function(place){
         const options = {
             method: 'GET',
@@ -57,7 +60,8 @@ let map = {
             }
           };
           
-        let response = await fetch('https://api.foursquare.com/v3/places/search?query=' + place + '&ll=42.97%2C-78.84&radius=8046&sort=DISTANCE&limit=5', options)
+
+        let response = await fetch('https://api.foursquare.com/v3/places/search?query=' + place + '&ll=' + this.coordinates[0] + '%2C' + this.coordinates[1] + '&radius=8046&sort=DISTANCE&limit=5', options)
         let locations = await response.json()
         
         let spots = []
@@ -68,10 +72,21 @@ let map = {
         });
         this.pins = L.layerGroup(spots).addTo(this.myMap)
     },
-
+    // Function which removes all pins from the map
     removePins: function(){
         this.pins.removeFrom(this.myMap)
-    }
+    },
+    // Function which returns the coordinates of the location in the user input using Google Geolocation API
+    searchAddress: async function(){
+        let address = document.getElementById('address')
+        let value = address.value
+        address.value = ''
+        value = value.replaceAll('.', '')
+        value = value.replaceAll(' ', '+')
 
+        let response = await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + value + '&key=AIzaSyD3BWZuTzDjfrVEWH6fYfCcZl5PdPYfjK4')
+        let location = await response.json()
+        return location.results[0].geometry.location
+    }
 }
 

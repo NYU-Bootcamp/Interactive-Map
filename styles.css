@@ -10,7 +10,7 @@ h3 {
 }
 
 #menu {
-    width: 40%;
+    width: 60%;
     background-color: rgb(67, 67, 122);
     border-radius: 25px;
     padding: 10px;
@@ -27,8 +27,25 @@ input[type="radio"] {
 }
 
 #map {
-    height: calc(100vh - 66px);
-    /* width: 96%; */
+    height: calc(100vh - 70px);
     margin: auto;
-    border: 3px solid rgb(67, 67, 122);
+    border: 5px outset rgb(67, 67, 122);
+}
+
+#addMap, #maps, #address {
+    background-color: rgb(213, 213, 224);
+    color: rgb(67, 67, 122);
+    border: none;
+    border-radius: 9px;
+    height: 100%;
+    padding: 0 20px;
+}
+
+#maps, #address {
+    padding: 0 10px;
+    background-color: #fff;
+}
+
+#addMap:hover {
+    background-color: #fff;
 }
