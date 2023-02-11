@@ -1,10 +1,11 @@
 let user = {
     // A variable which contains an array of coordinates for each man
     maps: [],
-    // A function which adds new map coordinates to the array above and adds to the selection list
+    // A function which adds new map coordinates to the array above, adds to the selection list, and adds to localstorage
     addMap: function(){
         this.maps.push(map.coordinates)
         selectorAddMaps()
+        localStorage.setItem("maps", JSON.stringify(this.maps))
     },
     // A function which gets the current coordinates of the user
     getCoords: async function(){
